@@ -5,23 +5,39 @@ echo "Installing Dependencies..."
 sudo apt update
 sudo apt install git axel openjdk-17-jre openjdk-21-jre openjdk-22-jre -y
 
-# Cloning
+# Clone the repo (optional if already cloned)
 git clone https://github.com/xiv3r/Burpsuite-Professional.git 
 cd Burpsuite-Professional
 
-# Download Burpsuite Professional
-echo "Downloading Burp Suite Professional Latest..."
-version=2025
-url="https://portswigger.net/burp/releases/download?product=pro&type=Jar"
-axel "$url" -o "burpsuite_pro_v$version.jar"
+# Set Burp Suite version
+version="2025.8.1"  
+jar_url="https://portswigger-cdn.net/burp/releases/download?product=pro&version=$version&type=Jar"
+jar_output="burpsuite_pro_v$version.jar"
 
-# Execute Key Generator
+# Download Burp Suite using axel or curl
+echo "Downloading Burp Suite Professional v$version..."
+axel -n 8 -o "$jar_output" "$jar_url" || curl -L "$jar_url" -o "$jar_output"
+
+# Start Key Loader
 echo "Starting Key loader.jar..."
 (java -jar loader.jar) &
 
-# Execute Burpsuite Professional
-echo "Executing Burpsuite Professional..."
-echo "java --add-opens=java.desktop/javax.swing=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED --add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED -javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/burpsuite_pro_v$version.jar &" > burpsuitepro
+# Create launcher
+echo "Creating launcher script..."
+cat <<EOF > burpsuitepro
+#!/bin/bash
+java \\
+--add-opens=java.desktop/javax.swing=ALL-UNNAMED \\
+--add-opens=java.base/java.lang=ALL-UNNAMED \\
+--add-opens=java.base/jdk.internal.org.objectweb.asm=ALL-UNNAMED \\
+--add-opens=java.base/jdk.internal.org.objectweb.asm.tree=ALL-UNNAMED \\
+--add-opens=java.base/jdk.internal.org.objectweb.asm.Opcodes=ALL-UNNAMED \\
+-javaagent:$(pwd)/loader.jar -noverify -jar $(pwd)/$jar_output &
+EOF
+
+# Make executable and install globally
 chmod +x burpsuitepro
-cp burpsuitepro /bin/burpsuitepro
-(./burpsuitepro)
+sudo cp burpsuitepro /usr/local/bin/burpsuitepro
+
+# Run Burp
+./burpsuitepro
