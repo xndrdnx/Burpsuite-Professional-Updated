@@ -1,3 +1,5 @@
+### I'm currently maintaining linux versions only. use bash scripts.
+
 ![Screenshot_2024-09-19_17_45_09](https://github.com/user-attachments/assets/873ef98a-48e0-445b-b5dc-eb5959ad5b34)
 
 # <h1 align="center">Burpsuite Professional v2025 latest</h1>
@@ -19,30 +21,21 @@ wget -qO- https://raw.githubusercontent.com/ghostvirus62/Burpsuite-Professional-
 ```sh
 burpsuitepro
 ```
-<details><summary>
 
 ## Update
-</summary>
-
-> optional
 ```sh
 cd
 ```
 ```
-rm -rf Burpsuite-Professional && wget -qO- https://raw.githubusercontent.com/xiv3r/Burpsuite-Professional/refs/heads/main/update.sh | sudo bash
+wget -qO- https://raw.githubusercontent.com/ghostvirus62/Burpsuite-Professional-Updated/main/update.sh | bash
 ```
-</details>
-
-<details><summary>
  
 ## Java Version
-</summary>
 
 > select the default java version
 ```sh
 sudo update-alternatives --config java
 ```               
-</details>
 
 ## Setup Licenses
 
