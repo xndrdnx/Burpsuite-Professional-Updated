@@ -6,8 +6,8 @@ sudo apt update
 sudo apt install git axel openjdk-17-jre openjdk-21-jre openjdk-22-jre -y
 
 # Clone the repo (optional if already cloned)
-git clone https://github.com/xiv3r/Burpsuite-Professional.git 
-cd Burpsuite-Professional
+git clone https://github.com/ghostvirus62/Burpsuite-Professional-Updated.git
+cd Burpsuite-Professional-Updated || { echo "[-] Failed to cd into repo"; exit 1; }
 
 # Set Burp Suite version
 version="2025.8.1"  
