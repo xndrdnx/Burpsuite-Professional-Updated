@@ -17,7 +17,7 @@
 
 # Linux Installation
 ```sh
-wget -qO- https://raw.githubusercontent.com/ghostvirus62/Burpsuite-Professional-Updated/main/install.sh | bash
+wget -qO- https://raw.githubusercontent.com/xndrdnx/Burpsuite-Professional-Updated/main/install.sh | bash
 ```
 ## Run
 ```sh
@@ -29,7 +29,7 @@ burpsuitepro
 cd
 ```
 ```
-wget -qO- https://raw.githubusercontent.com/ghostvirus62/Burpsuite-Professional-Updated/main/update.sh | bash
+wget -qO- https://raw.githubusercontent.com/xndrdnx/Burpsuite-Professional-Updated/main/update.sh | bash
 ```
  
 ## Java Version
